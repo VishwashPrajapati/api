@@ -11,6 +11,9 @@ var router = express.Router();
 
 const serverless = require('serverless-http')
 
+var port = process.env.PORT || 3000;
+app.listen(port);
+
 mongoose.connect("mongodb+srv://api_onlineShoppify:api_onlineShoppify@cluster0.2o2uk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",{ 
   useNewUrlParser: true,
   useCreateIndex: true,
@@ -32,8 +35,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/.netlify/functions/api', indexRouter);
-app.use('/.netlify/functions/api/users', usersRouter);
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
